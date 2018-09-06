@@ -2,12 +2,10 @@ import requests
 from django.http import HttpResponse
 from django.http import QueryDict
 from pprint import pprint
-import logging
 from requests.packages.urllib3.exceptions import InsecurePlatformWarning
 requests.packages.urllib3.disable_warnings(InsecurePlatformWarning)
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-logger = logging.getLogger("cdngate.proxy")
 
 
 def proxy_view(request, url, requests_args=None):
@@ -71,13 +69,6 @@ def proxy_view(request, url, requests_args=None):
         if key.lower() in excluded_headers:
             continue
         proxy_response[key] = value
-    # 用户请求信息
-    logger.info("Target URL:[{0}]{1}".format(request.method, response.url))
-    logger.info("Requests Args:{0}".format(requests_args))
-    logger.info("Request All Header:{0}".format(headers))
-    # 运营商接口返回信息
-    logger.info("Back Body:{0}".format(response.content))
-    logger.info("Back Header:{0}".format(response.headers))
     return proxy_response
 
 
