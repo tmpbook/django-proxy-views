@@ -1,7 +1,6 @@
 import requests
 from django.http import HttpResponse
 from django.http import QueryDict
-from pprint import pprint
 from requests.packages.urllib3.exceptions import InsecurePlatformWarning
 requests.packages.urllib3.disable_warnings(InsecurePlatformWarning)
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
